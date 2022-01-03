@@ -8,7 +8,8 @@ const validator = require('validator');
 // source — the article source (string, required).
 // link — a link to the article (string, required, must be a URL address).
 // image — a link to the image for the article (string, required, must be a URL address).
-// owner — the _id of the user who saved the article. You need to set the default behavior so that the database doesn't return this field.
+// owner — the _id of the user who saved the article.
+// You need to set the default behavior so that the database doesn't return this field.
 
 const articleSchema = new mongoose.Schema({
   keyword: {
@@ -53,9 +54,8 @@ const articleSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
-    select: false,
+    select: true,
   },
 });
 
-// create the model and export it
 module.exports = mongoose.model('article', articleSchema);

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
 
@@ -14,13 +15,13 @@ module.exports = (req, res, next) => {
   try {
     payload = jwt.verify(
       token,
-      NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret'
+      NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret',
     );
   } catch (err) {
     return res.status(401).send({ message: 'Authorization Required' });
   }
 
-  req.user = payload; // assigning the payload to the request object
+  req.user = payload;
 
-  next(); // sending the request to the next middleware
+  next();
 };

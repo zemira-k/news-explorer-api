@@ -1,4 +1,4 @@
-const router = require('express').Router(); // creating a router
+const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
   getAllArticles,
@@ -24,14 +24,14 @@ router.post(
       image: Joi.string().required().uri(),
     }),
   }),
-  createArticle
+  createArticle,
 );
 
 router.delete(
   '/articles/:articleId',
   celebrate({
     params: Joi.object().keys({
-      id: Joi.string().length(24).alphanum().required(),
+      articleId: Joi.string().length(24).alphanum().required(),
     }),
     headers: Joi.object()
       .keys({
@@ -39,7 +39,7 @@ router.delete(
       })
       .unknown(true),
   }),
-  deleteArticle
+  deleteArticle,
 );
 
 router.get('/articles', getAllArticles);

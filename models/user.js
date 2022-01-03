@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(
   email,
-  password
+  password,
 ) {
   return this.findOne({ email })
     .select('+password')
@@ -43,7 +43,7 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(
           throw new AuthError('Incorrect email or password');
         }
 
-        return user; // now user is available
+        return user;
       });
     });
 };
