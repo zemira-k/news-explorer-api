@@ -2,42 +2,35 @@ const express = require('express');
 const { errors } = require('celebrate');
 require('dotenv').config();
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, DB_ADRESS } = process.env;
 const mongoose = require('mongoose');
 
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { celebrate, Joi } = require('celebrate');
 const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./logs/logger');
 
-const { login, createUser } = require('./controllers/users');
-const auth = require('./middleware/auth');
+const limiter = require('./middleware/limiter');
 
-const articles = require('./routes/articles');
-
-const users = require('./routes/users');
+const routes = require('./routes/index');
 
 app.use(helmet());
 app.options('*', cors());
 app.use(cors());
 
 // for localDb testing
-mongoose.connect('mongodb://localhost:27017/finaldb', {
+mongoose.connect(NODE_ENV === 'production' ? DB_ADRESS : '', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
-// mongoose.connect('mongodb://localhost:27017/finaldb', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(requestLogger);
+
+app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -45,32 +38,8 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post(
-  '/signin',
-  celebrate({
-    body: Joi.object().keys({
-      email: Joi.string().required().email(),
-      password: Joi.string().required().alphanum(),
-    }),
-  }),
-  login,
-);
+app.use('/', routes);
 
-app.post(
-  '/signup',
-  celebrate({
-    body: Joi.object().keys({
-      email: Joi.string().required().email(),
-      password: Joi.string().required().alphanum(),
-    }),
-  }),
-  createUser,
-);
-
-app.use(auth);
-
-app.use('/', articles);
-app.use('/', users);
 app.get('*', (req, res) => {
   res.status(404).send({ message: 'Requested resource not found' });
 });
