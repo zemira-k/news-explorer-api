@@ -1,4 +1,6 @@
+/* eslint-disable linebreak-style */
 const express = require('express');
+
 const { errors } = require('celebrate');
 require('dotenv').config();
 
@@ -20,7 +22,7 @@ app.options('*', cors());
 app.use(cors());
 
 // for localDb testing
-mongoose.connect(NODE_ENV === 'production' ? DB_ADRESS : '', {
+mongoose.connect(NODE_ENV === 'production' ? DB_ADRESS : DB_ADRESS, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
