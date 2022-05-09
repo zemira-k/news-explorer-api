@@ -1,3 +1,8 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable comma-dangle */
+/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
+/* eslint-disable linebreak-style */
 const router = require('express').Router();
 
 const { celebrate, Joi } = require('celebrate');

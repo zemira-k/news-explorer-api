@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-err');
 const BadReqError = require('../errors/bad-req-err');
@@ -12,9 +13,7 @@ const getAllArticles = (req, res, next) => {
 };
 
 const createArticle = (req, res, next) => {
-  const {
-    keyword, title, text, date, source, link, image,
-  } = req.body;
+  const { keyword, title, text, date, source, link, image } = req.body;
 
   Article.create({
     keyword,

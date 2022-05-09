@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 class AuthError extends Error {
   constructor(message) {
     super(message);

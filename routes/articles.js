@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
@@ -24,7 +25,7 @@ router.post(
       image: Joi.string().required().uri(),
     }),
   }),
-  createArticle,
+  createArticle
 );
 
 router.delete(
@@ -39,7 +40,7 @@ router.delete(
       })
       .unknown(true),
   }),
-  deleteArticle,
+  deleteArticle
 );
 
 router.get('/articles', getAllArticles);
