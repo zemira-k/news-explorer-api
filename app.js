@@ -22,10 +22,10 @@ app.options('*', cors());
 app.use(cors());
 
 // for localDb testing
-mongoose.connect("mongodb://localhost:27017/finaldb", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/finaldb", {
+//  useNewUrlParser: true,
+//  useUnifiedTopology: true,
+// });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
