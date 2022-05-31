@@ -22,7 +22,7 @@ app.options('*', cors());
 app.use(cors());
 
 // for localDb testing
-mongoose.connect(NODE_ENV === 'production' ? DB_ADRESS : DB_ADRESS, {
+mongoose.connect(mongodb://localhost:27017/finaldb, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
