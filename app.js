@@ -1,31 +1,34 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable linebreak-style */
 const express = require('express');
-
-const { errors } = require('celebrate');
-require('dotenv').config();
-
-const { PORT = 3000, NODE_ENV, DB_ADRESS } = process.env;
 const mongoose = require('mongoose');
-
-const app = express();
+const dotenv = require('dotenv');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const helmet = require('helmet');
+const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./logs/logger');
-
 const limiter = require('./middleware/limiter');
-
 const routes = require('./routes/index');
+
+dotenv.config();
+
+const { PORT = 3000, NODE_ENV, DB_ADRESS } = process.env;
+
+const app = express();
 
 app.use(helmet());
 app.options('*', cors());
 app.use(cors());
 
 // for localDb testing
-// mongoose.connect("mongodb://localhost:27017/finaldb", {
-//  useNewUrlParser: true,
-//  useUnifiedTopology: true,
-// });
+mongoose.connect(
+  NODE_ENV === 'production' ? DB_ADRESS : 'mongodb://localhost:27017/news',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
