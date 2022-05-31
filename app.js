@@ -22,7 +22,7 @@ app.options('*', cors());
 app.use(cors());
 
 // for localDb testing
-mongoose.connect(mongodb://localhost:27017/finaldb, {
+mongoose.connect("mongodb://localhost:27017/finaldb", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
