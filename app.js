@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable comma-dangle */
 /* eslint-disable linebreak-style */
 const express = require('express');
