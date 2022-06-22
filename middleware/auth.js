@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable linebreak-style */
 /* eslint-disable consistent-return */
 const { NODE_ENV, JWT_SECRET } = process.env;

@@ -1,3 +1,6 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable linebreak-style */
 const bcrypt = require('bcryptjs');
 
