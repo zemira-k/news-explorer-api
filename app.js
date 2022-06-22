@@ -23,7 +23,7 @@ app.use(cors());
 
 // for localDb testing
 mongoose.connect(
-  NODE_ENV === 'production' ? DB_ADRESS : 'mongodb://localhost:27017/news',
+  NODE_ENV === 'production' ? DB_ADRESS : 'mongodb://localhost:27017/final',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
