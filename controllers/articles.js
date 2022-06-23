@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable linebreak-style */
 const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-err');

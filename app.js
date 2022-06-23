@@ -19,8 +19,8 @@ const { PORT = 3000, NODE_ENV, DB_ADRESS } = process.env;
 const app = express();
 
 app.use(helmet());
-app.options('*', cors());
 app.use(cors());
+app.options('*', cors());
 
 // for localDb testing
 mongoose.connect(
